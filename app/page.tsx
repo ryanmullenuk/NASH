@@ -38,7 +38,7 @@ const openingHours = [
 ];
 
 function RazorN({ className = "" }: { className?: string }) {
-  return <span className={`razor-n ${className}`} aria-hidden="true"><b>N</b><i /></span>;
+  return <span className={`razor-n ${className}`} aria-hidden="true" />;
 }
 
 export default function Home() {
@@ -205,9 +205,6 @@ export default function Home() {
           <p>For NASH, tradition is not about copying the past. It means keeping the patience, precision and hospitality that made the craft worth passing on.</p>
         </div>
 
-        <p className="history-sources" data-reveal>
-          Background reading: <a href="https://akgroomingroom.co.uk/history/" target="_blank" rel="noreferrer">AK Grooming Room</a>, <a href="https://www.cambridge.org/core/journals/international-review-of-social-history/article/ottoman-guilds-in-the-early-modern-era/DBB9453C3BE34AEE2D4F8D3C9E390BAA" target="_blank" rel="noreferrer">Ottoman guild history</a> and <a href="https://modernbarber.co.uk/zanear-ali" target="_blank" rel="noreferrer">Modern Barber&apos;s Kurdish industry profile</a>.
-        </p>
       </section>
 
       <section className="work section" id="work">
@@ -227,7 +224,6 @@ export default function Home() {
           <div><p className="eyebrow">The finishing ritual</p><strong>Hot towel.<br />Time to reset.</strong></div>
           <span>Calm · Care · Craft</span>
         </div>
-        <p className="photo-credit" data-reveal>Original NASH shop and customer photography, professionally reframed and enhanced.</p>
       </section>
 
       <section className="reviews section" id="reviews">
