@@ -1,10 +1,10 @@
 import MotionSystem, { ParticleField } from "./MotionSystem";
 
 const services = [
-  { number: "01", title: "The Nash Cut", copy: "A considered consultation, precise cut and finished style. Classic or current, built around your hair." },
-  { number: "02", title: "Skin Fade", copy: "A clean, controlled fade with careful graduation, sharp edges and a finish that holds its shape." },
-  { number: "03", title: "Cut & Beard", copy: "Haircut and beard work shaped together for balance, proportion and a properly connected finish." },
-  { number: "04", title: "Beard & Hot Towel", copy: "Line-up, shape and detail work, finished with the calm ritual of a hot towel." },
+  { number: "01", icon: "scissors", iconLabel: "Scissors", title: "The Nash Cut", copy: "A considered consultation, precise cut and finished style. Classic or current, built around your hair." },
+  { number: "02", icon: "clippers", iconLabel: "Clippers", title: "Skin Fade", copy: "A clean, controlled fade with careful graduation, sharp edges and a finish that holds its shape." },
+  { number: "03", icon: "razor", iconLabel: "Cutthroat razor", title: "Cut & Beard", copy: "Haircut and beard work shaped together for balance, proportion and a properly connected finish." },
+  { number: "04", icon: "towel", iconLabel: "Hot towel", title: "Beard & Hot Towel", copy: "Line-up, shape and detail work, finished with the calm ritual of a hot towel." },
 ];
 
 const reviews = [
@@ -15,7 +15,19 @@ const reviews = [
   { name: "Rhys", location: "Lymington", copy: "Relaxed atmosphere, excellent attention to detail and a consistently clean result." },
 ];
 
-const googleReviewUrl = "https://www.google.com/maps/search/?api=1&query=NASH+Barber+Lymington+Hampshire";
+const address = "3 Queen Street, Lymington SO41 9NH";
+const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=NASH+Barber+3+Queen+Street+Lymington+SO41+9NH";
+const googleReviewUrl = googleMapsUrl;
+
+const openingHours = [
+  ["Monday", "9am–6pm"],
+  ["Tuesday", "9am–6pm"],
+  ["Wednesday", "9am–6pm"],
+  ["Thursday", "9am–6pm"],
+  ["Friday", "9am–6pm"],
+  ["Saturday", "8am–6pm"],
+  ["Sunday", "10am–4pm"],
+];
 
 export default function Home() {
   return (
@@ -87,7 +99,13 @@ export default function Home() {
         <div className="service-grid">
           {services.map((service, index) => (
             <article className="service-card" key={service.number} data-reveal data-delay={String(index + 1)}>
-              <span className="service-number">{service.number}</span>
+              <div className="service-card-top">
+                <span className="service-number">{service.number}</span>
+                <span className={`service-icon icon-${service.icon}`} role="img" aria-label={service.iconLabel}>
+                  {service.icon === "scissors" && <span aria-hidden="true">✂</span>}
+                  {service.icon !== "scissors" && <i aria-hidden="true" />}
+                </span>
+              </div>
               <h3>{service.title}</h3>
               <p>{service.copy}</p>
               <a href="#book" aria-label={`Enquire about ${service.title}`}>Enquire <span aria-hidden="true">↗</span></a>
@@ -98,8 +116,8 @@ export default function Home() {
       </section>
 
       <section className="story" id="story">
-        <div className="story-image" role="img" aria-label="Barber working carefully with scissors" data-reveal="image">
-          <span className="image-label">The hands behind the cut</span>
+        <div className="story-image" role="img" aria-label="Hot towel treatment inside NASH Barber" data-reveal="image">
+          <span className="image-label">The complete barbering ritual</span>
         </div>
         <div className="story-copy">
           <p className="eyebrow" data-reveal>The Nash way</p>
@@ -160,14 +178,14 @@ export default function Home() {
             <p className="eyebrow">Selected work</p>
             <h2 data-reveal-title>Sharp from<br /><em>every angle.</em></h2>
           </div>
-          <p className="section-lead" data-reveal data-delay="2">Fades, texture, beard work and classic cuts. The gallery is ready for NASH&apos;s own work when the photography is available.</p>
+          <p className="section-lead" data-reveal data-delay="2">Real NASH customers, real shop work. Clean fades, natural texture and considered details, shown in the chair where they were created.</p>
         </div>
         <div className="gallery">
-          <div className="gallery-image gallery-one" role="img" aria-label="Barber detailing a modern haircut" data-reveal="image"><span>Precision</span></div>
-          <div className="gallery-image gallery-two" role="img" aria-label="Close-up of a finished haircut" data-reveal="image" data-delay="1"><span>Shape</span></div>
-          <div className="gallery-image gallery-three" role="img" aria-label="Barber tools ready for use" data-reveal="image" data-delay="2"><span>Detail</span></div>
+          <div className="gallery-image gallery-one" role="img" aria-label="NASH customer with a clean graduated fade" data-reveal="image"><span>Precision fade</span></div>
+          <div className="gallery-image gallery-two" role="img" aria-label="NASH customer with bleached textured hair and a clean fade" data-reveal="image" data-delay="1"><span>Texture</span></div>
+          <div className="gallery-image gallery-three" role="img" aria-label="Young NASH customer with a shaved line design" data-reveal="image" data-delay="2"><span>Detail work</span></div>
         </div>
-        <p className="photo-credit" data-reveal>Draft photography via Unsplash. Replace with original NASH work before final launch.</p>
+        <p className="photo-credit" data-reveal>Original NASH shop and customer photography, professionally reframed and enhanced.</p>
       </section>
 
       <section className="reviews section" id="reviews">
@@ -208,20 +226,35 @@ export default function Home() {
 
       <section className="visit" id="visit">
         <div className="visit-mark" aria-hidden="true" data-reveal="scale">
-          <span className="motif">◆</span>
-          <strong>N</strong>
-          <small>BARBER</small>
+          <span className="shop-icon"><i /><b /><em /></span>
+          <small>NASH BARBER</small>
         </div>
         <div className="visit-copy" data-reveal>
           <p className="eyebrow dark">Find us</p>
           <h2 data-reveal-title>Your local chair<br />in <em>Lymington.</em></h2>
-          <p>NASH Barber is based in Lymington, Hampshire, serving the town and the wider New Forest community.</p>
-          <a className="text-link dark-link" href="https://www.google.com/maps/search/?api=1&query=NASH+Barber+Lymington+Hampshire" target="_blank" rel="noreferrer">Open map search <span aria-hidden="true">↗</span></a>
+          <p>NASH Barber is at {address}, serving Lymington and the wider New Forest community.</p>
+          <a className="text-link dark-link" href={googleMapsUrl} target="_blank" rel="noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
         </div>
         <div className="details-card" data-reveal data-delay="2">
-          <div><small>Address</small><strong>Lymington, Hampshire</strong><span>Full address to be added</span></div>
-          <div><small>Opening hours</small><strong>Hours to be confirmed</strong><span>Add weekday and weekend hours</span></div>
-          <div><small>Contact</small><strong>Phone & social details</strong><span>To be added before launch</span></div>
+          <div><small>Address</small><strong>3 Queen Street</strong><span>Lymington SO41 9NH</span></div>
+          <div className="hours-block">
+            <small>Opening hours</small>
+            <dl>{openingHours.map(([day, hours]) => <div key={day}><dt>{day}</dt><dd>{hours}</dd></div>)}</dl>
+          </div>
+        </div>
+      </section>
+
+      <section className="map-section" aria-label="Map showing NASH Barber in Lymington" data-reveal>
+        <iframe
+          title="NASH Barber at 3 Queen Street, Lymington"
+          src="https://www.google.com/maps?q=3+Queen+Street,+Lymington+SO41+9NH&output=embed"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+        <div className="map-card">
+          <span className="barber-pole" aria-hidden="true" />
+          <div><small>NASH BARBER</small><strong>3 Queen Street<br />Lymington SO41 9NH</strong></div>
+          <a href={googleMapsUrl} target="_blank" rel="noreferrer">Directions <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -241,7 +274,7 @@ export default function Home() {
         </a>
         <p>Kurdish precision. Lymington character.</p>
         <div className="footer-links"><a href="#services">Services</a><a href="#heritage">Heritage</a><a href="#reviews">Reviews</a><a href={googleReviewUrl} target="_blank" rel="noreferrer">Google review</a></div>
-        <small>© {new Date().getFullYear()} NASH Barber. Website concept.</small>
+        <small>© {new Date().getFullYear()} NASH Barber · 3 Queen Street, Lymington SO41 9NH</small>
       </footer>
     </main>
   );
