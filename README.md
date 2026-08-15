@@ -2,16 +2,21 @@
 
 First website concept for NASH Barber in Lymington, Hampshire.
 
-The site uses a bold editorial style with deep green, warm ivory and copper, combining modern British barbering with restrained Kurdish geometric influence. It is responsive and includes a branded loading sequence, subtle particle fields, scroll reveals, a moving service ticker, services, brand story, gallery, location, booking and social sharing sections.
+The site uses a bold editorial style with deep green, warm ivory and copper, combining modern British barbering with restrained Kurdish geometric influence. It is responsive and includes a branded loading sequence, subtle particle fields, scroll reveals, service icons, Kurdish barbering heritage, an original NASH customer gallery, opening hours, address, map, reviews and social sharing sections.
+
+## Shop details
+
+- NASH Barber, 3 Queen Street, Lymington SO41 9NH
+- Monday to Friday: 9am–6pm
+- Saturday: 8am–6pm
+- Sunday: 10am–4pm
 
 ## Content to confirm before final launch
 
-- Full shop address
-- Opening hours
 - Telephone number and social profiles
 - Booking provider and booking link
 - Final service list, prices and timings
-- Original NASH photography
+- Verified customer review wording
 
 ## Local development
 
