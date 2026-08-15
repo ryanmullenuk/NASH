@@ -7,6 +7,16 @@ const services = [
   { number: "04", title: "Beard & Hot Towel", copy: "Line-up, shape and detail work, finished with the calm ritual of a hot towel." },
 ];
 
+const reviews = [
+  { name: "James", location: "Lymington", copy: "Exactly the cut I asked for. The fade was clean, the detail was sharp and nothing felt rushed." },
+  { name: "Callum", location: "Lymington", copy: "A proper local barber experience. Friendly, precise and easily the best finish I have had in a long time." },
+  { name: "Oliver", location: "Lymington", copy: "Really careful work on both the haircut and beard. Everything was balanced and finished properly." },
+  { name: "Daniel", location: "Lymington", copy: "The consultation made the difference. The cut works with my hair and still looks sharp between visits." },
+  { name: "Rhys", location: "Lymington", copy: "Relaxed atmosphere, excellent attention to detail and a consistently clean result." },
+];
+
+const googleReviewUrl = "https://www.google.com/maps/search/?api=1&query=NASH+Barber+Lymington+Hampshire";
+
 export default function Home() {
   return (
     <main>
@@ -18,8 +28,8 @@ export default function Home() {
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
-          <a href="#story">Our craft</a>
-          <a href="#work">Our work</a>
+          <a href="#heritage">Heritage</a>
+          <a href="#reviews">Reviews</a>
           <a href="#visit">Visit</a>
         </nav>
         <a className="button button-small desktop-book" href="#book">Book a chair</a>
@@ -28,7 +38,9 @@ export default function Home() {
           <nav aria-label="Mobile navigation">
             <a href="#services">Services</a>
             <a href="#story">Our craft</a>
+            <a href="#heritage">Heritage</a>
             <a href="#work">Our work</a>
+            <a href="#reviews">Reviews</a>
             <a href="#visit">Visit</a>
           </nav>
         </details>
@@ -102,6 +114,46 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="heritage section" id="heritage">
+        <div className="heritage-heading">
+          <div data-reveal>
+            <p className="eyebrow dark">Kurdish barbering</p>
+            <h2 data-reveal-title>A craft carried<br /><em>forward.</em></h2>
+          </div>
+          <div className="heritage-intro" data-reveal data-delay="2">
+            <p>There is no single, separate written history of Kurdish barbering. Its roots sit within the wider grooming culture of the Middle East and the Ottoman world, where barbering developed as a skilled trade built on apprenticeship, steady technique and trust between barber and client.</p>
+            <p>Rather than using the familiar “Turkish barber” label, NASH chooses to name its identity clearly: Kurdish craft, practised with pride in Lymington.</p>
+          </div>
+        </div>
+
+        <div className="heritage-grid">
+          <article data-reveal data-delay="1">
+            <span>01</span>
+            <h3>Master the craft</h3>
+            <p>Trades across Ottoman cities were shaped by organised guild cultures and master-apprentice learning. Barbering demanded control of tools, close observation and years of practical development.</p>
+          </article>
+          <article data-reveal data-delay="2">
+            <span>02</span>
+            <h3>Serve the community</h3>
+            <p>The barbershop became more than a place to cut hair. It was a familiar social space where conversation, loyalty and personal care mattered alongside shaving, beard work and finishing rituals.</p>
+          </article>
+          <article data-reveal data-delay="3">
+            <span>03</span>
+            <h3>Bring it forward</h3>
+            <p>Today, Kurdish barbers are building a more visible identity in Britain, combining inherited regional discipline with modern fades, texture and contemporary men&apos;s style.</p>
+          </article>
+        </div>
+
+        <div className="heritage-statement" data-reveal>
+          <span aria-hidden="true">◆</span>
+          <p>For NASH, tradition is not about copying the past. It means keeping the patience, precision and hospitality that made the craft worth passing on.</p>
+        </div>
+
+        <p className="history-sources" data-reveal>
+          Background reading: <a href="https://akgroomingroom.co.uk/history/" target="_blank" rel="noreferrer">AK Grooming Room</a>, <a href="https://www.cambridge.org/core/journals/international-review-of-social-history/article/ottoman-guilds-in-the-early-modern-era/DBB9453C3BE34AEE2D4F8D3C9E390BAA" target="_blank" rel="noreferrer">Ottoman guild history</a> and <a href="https://modernbarber.co.uk/zanear-ali" target="_blank" rel="noreferrer">Modern Barber&apos;s Kurdish industry profile</a>.
+        </p>
+      </section>
+
       <section className="work section" id="work">
         <div className="section-heading work-heading">
           <div data-reveal>
@@ -116,6 +168,42 @@ export default function Home() {
           <div className="gallery-image gallery-three" role="img" aria-label="Barber tools ready for use" data-reveal="image" data-delay="2"><span>Detail</span></div>
         </div>
         <p className="photo-credit" data-reveal>Draft photography via Unsplash. Replace with original NASH work before final launch.</p>
+      </section>
+
+      <section className="reviews section" id="reviews">
+        <div className="section-heading reviews-heading">
+          <div data-reveal>
+            <p className="eyebrow dark">Local reputation</p>
+            <h2 data-reveal-title>Made sharp.<br /><em>Remembered.</em></h2>
+          </div>
+          <div className="reviews-intro" data-reveal data-delay="2">
+            <p>The review layout is ready for verified comments from NASH customers.</p>
+            <a className="button review-button" href={googleReviewUrl} target="_blank" rel="noreferrer">Leave a Google review <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div className="review-notice" data-reveal>
+          <strong>Draft content</strong>
+          <span>These five comments and names are sample layout copy, not genuine customer testimonials. Replace them with verified reviews before public launch.</span>
+        </div>
+
+        <div className="review-grid">
+          {reviews.map((review, index) => (
+            <article className="review-card" key={review.name} data-reveal data-delay={String((index % 4) + 1)}>
+              <div className="stars" aria-label="Five stars">★★★★★</div>
+              <blockquote>“{review.copy}”</blockquote>
+              <footer>
+                <strong>{review.name}</strong>
+                <span>{review.location} · Sample review</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+
+        <div className="review-cta" data-reveal>
+          <p>Already visited NASH?</p>
+          <a className="text-link dark-link" href={googleReviewUrl} target="_blank" rel="noreferrer">Share your experience on Google <span aria-hidden="true">↗</span></a>
+        </div>
       </section>
 
       <section className="visit" id="visit">
@@ -146,13 +234,13 @@ export default function Home() {
         <span className="button button-muted" aria-disabled="true" data-reveal data-delay="2">Booking link to be added</span>
       </section>
 
-      <footer data-reveal>
+      <footer className="site-footer" data-reveal>
         <a className="wordmark footer-mark" href="#top" aria-label="Back to top">
           <span className="wordmark-main">NASH</span>
           <span className="wordmark-sub">BARBER · LYMINGTON</span>
         </a>
         <p>Kurdish precision. Lymington character.</p>
-        <div className="footer-links"><a href="#services">Services</a><a href="#story">Our craft</a><a href="#visit">Visit</a></div>
+        <div className="footer-links"><a href="#services">Services</a><a href="#heritage">Heritage</a><a href="#reviews">Reviews</a><a href={googleReviewUrl} target="_blank" rel="noreferrer">Google review</a></div>
         <small>© {new Date().getFullYear()} NASH Barber. Website concept.</small>
       </footer>
     </main>

@@ -70,6 +70,10 @@ function RevealController() {
     const root = document.documentElement;
     root.classList.add("motion-ready");
     const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-title]"));
+    const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const titleParents = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal-title]"))
+      .map((title) => title.parentElement)
+      .filter((parent): parent is HTMLElement => Boolean(parent));
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       items.forEach((item) => item.classList.add("is-visible"));
@@ -80,11 +84,17 @@ function RevealController() {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add("is-visible");
+        entry.target.querySelectorAll<HTMLElement>("[data-reveal-title]").forEach((title) => title.classList.add("is-visible"));
         observer.unobserve(entry.target);
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8%" });
 
-    items.forEach((item) => observer.observe(item));
+    const aboveFold = new Set(document.querySelectorAll<HTMLElement>(".nav[data-reveal], .hero [data-reveal], .hero [data-reveal-title]"));
+    aboveFold.forEach((item) => item.classList.add("is-visible"));
+    new Set([...revealItems, ...titleParents])
+      .forEach((item) => {
+        if (!aboveFold.has(item)) observer.observe(item);
+      });
     return () => {
       observer.disconnect();
       root.classList.remove("motion-ready");
