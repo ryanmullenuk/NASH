@@ -2,10 +2,10 @@ import MotionSystem, { ParticleField } from "./MotionSystem";
 import EnquiryForm from "./EnquiryForm";
 
 const services = [
-  { number: "01", icon: "scissors", iconLabel: "Scissors", title: "The Nash Cut", copy: "A considered consultation, precise cut and finished style. Classic or current, built around your hair." },
-  { number: "02", icon: "clippers", iconLabel: "Clippers", title: "Skin Fade", copy: "A clean, controlled fade with careful graduation, sharp edges and a finish that holds its shape." },
-  { number: "03", icon: "beard", iconLabel: "Clippers shaping a beard", title: "Cut & Beard", copy: "Haircut and beard work shaped together for balance, proportion and a properly connected finish." },
-  { number: "04", icon: "hot-towel", iconLabel: "Cutthroat razor and hot towel", title: "Beard & Hot Towel", copy: "Line-up, shape and detail work, finished with the calm ritual of a hot towel." },
+  { number: "01", title: "The Nash Cut", copy: "A considered consultation, precise cut and finished style. Classic or current, built around your hair." },
+  { number: "02", title: "Skin Fade", copy: "A clean, controlled fade with careful graduation, sharp edges and a finish that holds its shape." },
+  { number: "03", title: "Cut & Beard", copy: "Haircut and beard work shaped together for balance, proportion and a properly connected finish." },
+  { number: "04", title: "Beard & Hot Towel", copy: "Line-up, shape and detail work, finished with the calm ritual of a hot towel." },
 ];
 
 const priceGroups = [
@@ -112,15 +112,7 @@ export default function Home() {
         <div className="service-grid">
           {services.map((service, index) => (
             <article className="service-card" key={service.number} data-reveal data-delay={String(index + 1)}>
-              <div className="service-card-top">
-                <span className="service-number">{service.number}</span>
-                <span className={`service-icon icon-${service.icon}`} role="img" aria-label={service.iconLabel}>
-                  {service.icon === "scissors" && <span aria-hidden="true">✂</span>}
-                  {service.icon === "clippers" && <i aria-hidden="true" />}
-                  {service.icon === "beard" && <span className="beard-icon" aria-hidden="true"><i /><b /></span>}
-                  {service.icon === "hot-towel" && <img src="/icons/hot-towel.png" alt="" />}
-                </span>
-              </div>
+              <span className="service-number">{service.number}</span>
               <h3>{service.title}</h3>
               <p>{service.copy}</p>
               <a href="#enquiry" aria-label={`Enquire about ${service.title}`}>Enquire</a>
