@@ -8,16 +8,17 @@ const services = [
 ];
 
 const reviews = [
-  { name: "James", location: "Lymington", copy: "Exactly the cut I asked for. The fade was clean, the detail was sharp and nothing felt rushed." },
-  { name: "Callum", location: "Lymington", copy: "A proper local barber experience. Friendly, precise and easily the best finish I have had in a long time." },
-  { name: "Oliver", location: "Lymington", copy: "Really careful work on both the haircut and beard. Everything was balanced and finished properly." },
-  { name: "Daniel", location: "Lymington", copy: "The consultation made the difference. The cut works with my hair and still looks sharp between visits." },
-  { name: "Rhys", location: "Lymington", copy: "Relaxed atmosphere, excellent attention to detail and a consistently clean result." },
+  { name: "Ryan Cameron", copy: "Welcoming and professional on every visit, with a consistently clean shop and a strong result." },
+  { name: "Noel Elikem Nicodemus", copy: "Listens properly, takes his time and gets the cut right every time." },
+  { name: "Graham M", copy: "Careful service for both father and son, taking time to understand the style requested." },
+  { name: "Maciej Kasprzak", copy: "Consistent attention to detail, with a polite and friendly welcome." },
+  { name: "Sean Douglas", copy: "A friendly welcome with a brilliant cut and shave." },
 ];
 
 const address = "3 Queen Street, Lymington SO41 9NH";
 const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=NASH+Barber+3+Queen+Street+Lymington+SO41+9NH";
-const googleReviewUrl = googleMapsUrl;
+const googleProfileUrl = "https://www.google.com/maps?cid=5288438106884590690";
+const googleReviewUrl = googleProfileUrl;
 
 const openingHours = [
   ["Monday", "9am–6pm"],
@@ -42,6 +43,7 @@ export default function Home() {
           <a href="#services">Services</a>
           <a href="#heritage">Heritage</a>
           <a href="#reviews">Reviews</a>
+          <a href="#enquiry">Contact</a>
           <a href="#visit">Visit</a>
         </nav>
         <a className="button button-small desktop-book" href="#book">Book a chair</a>
@@ -53,6 +55,7 @@ export default function Home() {
             <a href="#heritage">Heritage</a>
             <a href="#work">Our work</a>
             <a href="#reviews">Reviews</a>
+            <a href="#enquiry">Contact</a>
             <a href="#visit">Visit</a>
           </nav>
         </details>
@@ -116,8 +119,8 @@ export default function Home() {
       </section>
 
       <section className="story" id="story">
-        <div className="story-image" role="img" aria-label="Hot towel treatment inside NASH Barber" data-reveal="image">
-          <span className="image-label">The complete barbering ritual</span>
+        <div className="story-image" role="img" aria-label="Barber working carefully with scissors" data-reveal="image">
+          <span className="image-label">The hands behind the cut</span>
         </div>
         <div className="story-copy">
           <p className="eyebrow" data-reveal>The Nash way</p>
@@ -139,26 +142,39 @@ export default function Home() {
             <h2 data-reveal-title>A craft carried<br /><em>forward.</em></h2>
           </div>
           <div className="heritage-intro" data-reveal data-delay="2">
-            <p>There is no single, separate written history of Kurdish barbering. Its roots sit within the wider grooming culture of the Middle East and the Ottoman world, where barbering developed as a skilled trade built on apprenticeship, steady technique and trust between barber and client.</p>
-            <p>Rather than using the familiar “Turkish barber” label, NASH chooses to name its identity clearly: Kurdish craft, practised with pride in Lymington.</p>
+            <p>Kurdish barbering belongs to the wider grooming culture of the Middle East and the former Ottoman world. Across Kurdish communities in the regions now within Turkey, Iraq, Iran and Syria, the craft was passed from experienced barbers to apprentices through close observation, repetition and practical discipline.</p>
+            <p>Many Kurdish barbers in Britain are described commercially as “Turkish barbers”. NASH chooses to name its identity more clearly: Kurdish craft, practised with pride in Lymington.</p>
           </div>
         </div>
 
         <div className="heritage-grid">
           <article data-reveal data-delay="1">
             <span>01</span>
-            <h3>Master the craft</h3>
-            <p>Trades across Ottoman cities were shaped by organised guild cultures and master-apprentice learning. Barbering demanded control of tools, close observation and years of practical development.</p>
+            <h3>Learn from a master</h3>
+            <p>Barbering was learned through apprenticeship. Young barbers watched, prepared tools, practised technique and developed the steady hand needed for close work.</p>
           </article>
           <article data-reveal data-delay="2">
             <span>02</span>
-            <h3>Serve the community</h3>
-            <p>The barbershop became more than a place to cut hair. It was a familiar social space where conversation, loyalty and personal care mattered alongside shaving, beard work and finishing rituals.</p>
+            <h3>Respect the ritual</h3>
+            <p>Hot towels, razor shaving, beard shaping and careful finishing turned grooming into a complete service rather than a rushed haircut.</p>
           </article>
           <article data-reveal data-delay="3">
             <span>03</span>
-            <h3>Bring it forward</h3>
-            <p>Today, Kurdish barbers are building a more visible identity in Britain, combining inherited regional discipline with modern fades, texture and contemporary men&apos;s style.</p>
+            <h3>Serve the community</h3>
+            <p>The barbershop was a neighbourhood meeting place. Conversation, hospitality and trust mattered alongside the quality of the cut.</p>
+          </article>
+        </div>
+
+        <div className="heritage-detail-grid">
+          <article data-reveal data-delay="1">
+            <p className="eyebrow dark">Carried to Britain</p>
+            <h3>Heritage meets the modern chair.</h3>
+            <p>In recent decades, Kurdish migrants and refugees have carried these practical skills into towns and cities across Britain and Europe. Traditional razor work and hospitality now sit naturally beside skin fades, textured crops and current men&apos;s styling.</p>
+          </article>
+          <article data-reveal data-delay="2">
+            <p className="eyebrow dark">Named with pride</p>
+            <h3>Kurdish craft, clearly stated.</h3>
+            <p>“Turkish barber” has become a familiar umbrella term in Britain, including for shops run by Kurdish, Iraqi and Syrian barbers. NASH respects the shared regional tradition while giving its own Kurdish identity proper visibility.</p>
           </article>
         </div>
 
@@ -185,6 +201,10 @@ export default function Home() {
           <div className="gallery-image gallery-two" role="img" aria-label="NASH customer with bleached textured hair and a clean fade" data-reveal="image" data-delay="1"><span>Texture</span></div>
           <div className="gallery-image gallery-three" role="img" aria-label="Young NASH customer with a shaved line design" data-reveal="image" data-delay="2"><span>Detail work</span></div>
         </div>
+        <div className="hot-towel-feature" role="img" aria-label="A customer receiving a hot towel treatment at NASH Barber" data-reveal="image">
+          <div><p className="eyebrow">The finishing ritual</p><strong>Hot towel.<br />Time to reset.</strong></div>
+          <span>Calm · Care · Craft</span>
+        </div>
         <p className="photo-credit" data-reveal>Original NASH shop and customer photography, professionally reframed and enhanced.</p>
       </section>
 
@@ -195,14 +215,9 @@ export default function Home() {
             <h2 data-reveal-title>Made sharp.<br /><em>Remembered.</em></h2>
           </div>
           <div className="reviews-intro" data-reveal data-delay="2">
-            <p>The review layout is ready for verified comments from NASH customers.</p>
-            <a className="button review-button" href={googleReviewUrl} target="_blank" rel="noreferrer">Leave a Google review <span aria-hidden="true">↗</span></a>
+            <p><strong>4.7 out of 5</strong> from 32 Google reviews.</p>
+            <a className="button review-button" href={googleReviewUrl} target="_blank" rel="noreferrer">Read or leave a Google review <span aria-hidden="true">↗</span></a>
           </div>
-        </div>
-
-        <div className="review-notice" data-reveal>
-          <strong>Draft content</strong>
-          <span>These five comments and names are sample layout copy, not genuine customer testimonials. Replace them with verified reviews before public launch.</span>
         </div>
 
         <div className="review-grid">
@@ -212,7 +227,7 @@ export default function Home() {
               <blockquote>“{review.copy}”</blockquote>
               <footer>
                 <strong>{review.name}</strong>
-                <span>{review.location} · Sample review</span>
+                <span>Google review · Paraphrased for length</span>
               </footer>
             </article>
           ))}
@@ -241,6 +256,7 @@ export default function Home() {
             <small>Opening hours</small>
             <dl>{openingHours.map(([day, hours]) => <div key={day}><dt>{day}</dt><dd>{hours}</dd></div>)}</dl>
           </div>
+          <div><small>Google profile</small><strong>4.7 ★ from 32 reviews</strong><a href={googleProfileUrl} target="_blank" rel="noreferrer">View business profile ↗</a></div>
         </div>
       </section>
 
@@ -258,13 +274,30 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="enquiry section" id="enquiry">
+        <div className="enquiry-copy" data-reveal>
+          <p className="eyebrow">Contact NASH</p>
+          <h2 data-reveal-title>Ask about<br /><em>your next cut.</em></h2>
+          <p>Send your preferred service and timing. NASH can respond once the shop&apos;s contact email or phone number is connected.</p>
+          <div className="contact-lines"><span>Visit</span><strong>3 Queen Street, Lymington SO41 9NH</strong><span>Google</span><a href={googleProfileUrl} target="_blank" rel="noreferrer">NASH Barber business profile ↗</a></div>
+        </div>
+        <form className="enquiry-form" data-reveal data-delay="2">
+          <label>Name<input type="text" name="name" autoComplete="name" required /></label>
+          <label>Email or phone<input type="text" name="contact" autoComplete="email" required /></label>
+          <label>Service<select name="service" defaultValue=""><option value="" disabled>Select a service</option><option>The Nash Cut</option><option>Skin Fade</option><option>Cut & Beard</option><option>Beard & Hot Towel</option></select></label>
+          <label>Message<textarea name="message" rows={5} required /></label>
+          <button className="button button-muted" type="button" aria-disabled="true">Contact destination required</button>
+          <small>Add the shop&apos;s genuine email address or phone number to activate delivery. Google currently lists neither.</small>
+        </form>
+      </section>
+
       <section className="booking" id="book">
         <div className="booking-pattern" aria-hidden="true" />
         <ParticleField className="booking-particles" />
         <p className="eyebrow" data-reveal>Your next cut</p>
         <h2 data-reveal-title>Ready to look<br /><em>properly sharp?</em></h2>
-        <p data-reveal data-delay="1">Online booking, telephone and walk-in details can be connected here once the preferred booking route is confirmed.</p>
-        <span className="button button-muted" aria-disabled="true" data-reveal data-delay="2">Booking link to be added</span>
+        <p data-reveal data-delay="1">Walk in at 3 Queen Street or send an enquiry once the shop&apos;s contact destination is confirmed.</p>
+        <a className="button" href="#enquiry" data-reveal data-delay="2">Make an enquiry</a>
       </section>
 
       <footer className="site-footer" data-reveal>
@@ -273,7 +306,7 @@ export default function Home() {
           <span className="wordmark-sub">BARBER · LYMINGTON</span>
         </a>
         <p>Kurdish precision. Lymington character.</p>
-        <div className="footer-links"><a href="#services">Services</a><a href="#heritage">Heritage</a><a href="#reviews">Reviews</a><a href={googleReviewUrl} target="_blank" rel="noreferrer">Google review</a></div>
+        <div className="footer-links"><a href="#services">Services</a><a href="#heritage">Heritage</a><a href="#reviews">Reviews</a><a href="#enquiry">Contact</a><a href={googleReviewUrl} target="_blank" rel="noreferrer">Google review</a></div>
         <small>© {new Date().getFullYear()} NASH Barber · 3 Queen Street, Lymington SO41 9NH</small>
       </footer>
     </main>

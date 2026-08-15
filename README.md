@@ -2,7 +2,7 @@
 
 First website concept for NASH Barber in Lymington, Hampshire.
 
-The site uses a bold editorial style with deep green, warm ivory and copper, combining modern British barbering with restrained Kurdish geometric influence. It is responsive and includes a branded loading sequence, subtle particle fields, scroll reveals, service icons, Kurdish barbering heritage, an original NASH customer gallery, opening hours, address, map, reviews and social sharing sections.
+The site uses a bold editorial style with deep green, warm ivory and copper, combining modern British barbering with restrained Kurdish geometric influence. It is responsive and includes a branded loading sequence, subtle particle fields, scroll reveals, service icons, an expanded Kurdish barbering history, an original NASH customer gallery, opening hours, address, map, real Google review summaries, contact layout and social sharing sections.
 
 ## Shop details
 
@@ -14,9 +14,9 @@ The site uses a bold editorial style with deep green, warm ivory and copper, com
 ## Content to confirm before final launch
 
 - Telephone number and social profiles
+- Enquiry-form delivery email or phone/WhatsApp number
 - Booking provider and booking link
 - Final service list, prices and timings
-- Verified customer review wording
 
 ## Local development
 

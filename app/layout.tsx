@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host = requestHeaders.get("host") ?? "localhost:3000";
   const protocol = host.includes("localhost") ? "http" : "https";
-  const socialImage = `${protocol}://${host}/og.png`;
+  const socialImage = `${protocol}://${host}/images/nash-shop-sunny.jpg`;
   const title = "NASH Barber | Kurdish Precision in Lymington";
   const description = "Modern barbering shaped by Kurdish technique. Precision cuts, clean fades and considered beard work in Lymington, Hampshire.";
 
