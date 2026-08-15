@@ -1,10 +1,17 @@
 import MotionSystem, { ParticleField } from "./MotionSystem";
+import EnquiryForm from "./EnquiryForm";
 
 const services = [
   { number: "01", icon: "scissors", iconLabel: "Scissors", title: "The Nash Cut", copy: "A considered consultation, precise cut and finished style. Classic or current, built around your hair." },
   { number: "02", icon: "clippers", iconLabel: "Clippers", title: "Skin Fade", copy: "A clean, controlled fade with careful graduation, sharp edges and a finish that holds its shape." },
-  { number: "03", icon: "razor", iconLabel: "Cutthroat razor", title: "Cut & Beard", copy: "Haircut and beard work shaped together for balance, proportion and a properly connected finish." },
-  { number: "04", icon: "towel", iconLabel: "Hot towel", title: "Beard & Hot Towel", copy: "Line-up, shape and detail work, finished with the calm ritual of a hot towel." },
+  { number: "03", icon: "beard", iconLabel: "Clippers shaping a beard", title: "Cut & Beard", copy: "Haircut and beard work shaped together for balance, proportion and a properly connected finish." },
+  { number: "04", icon: "hot-towel", iconLabel: "Cutthroat razor and hot towel", title: "Beard & Hot Towel", copy: "Line-up, shape and detail work, finished with the calm ritual of a hot towel." },
+];
+
+const priceGroups = [
+  { title: "Haircut & Styling", items: [["Gents Haircut", "£15"], ["Skin Fade", "£16–£18"], ["Clipper Cut All Over", "£12"], ["Kid's Haircut (Under 10)", "£12"], ["OAP's Haircut", "£12"], ["Hair Wash & Dry", "£5"]] },
+  { title: "Shaving & Beard Care", items: [["Hot Towel Wet Shave", "£16–£18"], ["Beard Trim & Razor Line-Up", "£16–£18"], ["Haircut & Shave Combo", "£30"]] },
+  { title: "Additional Grooming", items: [["Cotton Threading (Eyebrows/Face)", "£7"], ["Nose Wax", "£4"], ["Full Service Package", "£40"]], note: "Haircut, shave, hot towel, nose wax and massage." },
 ];
 
 const reviews = [
@@ -30,20 +37,24 @@ const openingHours = [
   ["Sunday", "10am–4pm"],
 ];
 
+function RazorN({ className = "" }: { className?: string }) {
+  return <span className={`razor-n ${className}`} aria-hidden="true"><b>N</b><i /></span>;
+}
+
 export default function Home() {
   return (
     <main>
       <MotionSystem />
       <header className="nav" data-reveal data-delay="2">
         <a className="wordmark" href="#top" aria-label="Nash Barber home">
-          <span className="wordmark-main">NASH</span>
-          <span className="wordmark-sub">BARBER · LYMINGTON</span>
+          <RazorN className="brand-n" />
+          <span className="wordmark-copy"><span className="wordmark-main">NASH</span><span className="wordmark-sub">BARBER · LYMINGTON</span></span>
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
+          <a href="#prices">Prices</a>
           <a href="#heritage">Heritage</a>
           <a href="#reviews">Reviews</a>
-          <a href="#enquiry">Contact</a>
           <a href="#visit">Visit</a>
         </nav>
         <a className="button button-small desktop-book" href="#book">Book a chair</a>
@@ -51,6 +62,7 @@ export default function Home() {
           <summary>Menu</summary>
           <nav aria-label="Mobile navigation">
             <a href="#services">Services</a>
+            <a href="#prices">Prices</a>
             <a href="#story">Our craft</a>
             <a href="#heritage">Heritage</a>
             <a href="#work">Our work</a>
@@ -71,13 +83,11 @@ export default function Home() {
           </p>
           <div className="hero-actions" data-reveal data-delay="3">
             <a className="button" href="#book">Book an appointment</a>
-            <a className="text-link" href="#services">Explore services <span aria-hidden="true">↘</span></a>
+            <a className="text-link" href="#services">Explore services</a>
           </div>
         </div>
-        <div className="hero-image" role="img" aria-label="Barber creating a precision haircut" data-reveal="image" data-delay="2">
+        <div className="hero-image" role="img" aria-label="The interior of NASH Barber in Lymington" data-reveal="image" data-delay="2">
           <div className="hero-frame" aria-hidden="true" />
-          <div className="hero-stamp"><span>N</span><small>Lymington<br />Hampshire</small></div>
-          <p className="vertical-note">CUT · CRAFT · CHARACTER</p>
         </div>
       </section>
 
@@ -106,16 +116,28 @@ export default function Home() {
                 <span className="service-number">{service.number}</span>
                 <span className={`service-icon icon-${service.icon}`} role="img" aria-label={service.iconLabel}>
                   {service.icon === "scissors" && <span aria-hidden="true">✂</span>}
-                  {service.icon !== "scissors" && <i aria-hidden="true" />}
+                  {service.icon === "clippers" && <i aria-hidden="true" />}
+                  {service.icon === "beard" && <span className="beard-icon" aria-hidden="true"><i /><b /></span>}
+                  {service.icon === "hot-towel" && <img src="/icons/hot-towel.png" alt="" />}
                 </span>
               </div>
               <h3>{service.title}</h3>
               <p>{service.copy}</p>
-              <a href="#book" aria-label={`Enquire about ${service.title}`}>Enquire <span aria-hidden="true">↗</span></a>
+              <a href="#enquiry" aria-label={`Enquire about ${service.title}`}>Enquire</a>
             </article>
           ))}
         </div>
-        <p className="content-note" data-reveal>Service list, prices and timings can be added once confirmed.</p>
+        <p className="content-note" data-reveal>Walk-ins welcome. Prices shown below.</p>
+      </section>
+
+      <section className="prices section" id="prices">
+        <div className="section-heading price-heading">
+          <div data-reveal><p className="eyebrow">Price list</p><h2 data-reveal-title>Clear prices.<br /><em>Proper service.</em></h2></div>
+          <p className="section-lead" data-reveal data-delay="2">Straightforward grooming with every detail finished properly.</p>
+        </div>
+        <div className="price-groups">
+          {priceGroups.map((group, index) => <article key={group.title} data-reveal data-delay={String(index + 1)}><h3>{group.title}</h3><dl>{group.items.map(([name, price]) => <div key={name}><dt>{name}</dt><dd>{price}</dd></div>)}</dl>{group.note && <p>{group.note}</p>}</article>)}
+        </div>
       </section>
 
       <section className="story" id="story">
@@ -167,9 +189,9 @@ export default function Home() {
 
         <div className="heritage-detail-grid">
           <article data-reveal data-delay="1">
-            <p className="eyebrow dark">Carried to Britain</p>
+            <p className="eyebrow dark">The modern chair</p>
             <h3>Heritage meets the modern chair.</h3>
-            <p>In recent decades, Kurdish migrants and refugees have carried these practical skills into towns and cities across Britain and Europe. Traditional razor work and hospitality now sit naturally beside skin fades, textured crops and current men&apos;s styling.</p>
+            <p>Kurdish barbering continues to develop in Britain, where traditional razor work and hospitality sit naturally beside skin fades, textured crops and current men&apos;s styling.</p>
           </article>
           <article data-reveal data-delay="2">
             <p className="eyebrow dark">Named with pride</p>
@@ -215,8 +237,8 @@ export default function Home() {
             <h2 data-reveal-title>Made sharp.<br /><em>Remembered.</em></h2>
           </div>
           <div className="reviews-intro" data-reveal data-delay="2">
-            <p><strong>4.7 out of 5</strong> from 32 Google reviews.</p>
-            <a className="button review-button" href={googleReviewUrl} target="_blank" rel="noreferrer">Read or leave a Google review <span aria-hidden="true">↗</span></a>
+            <p>Customer experiences from the NASH Google profile.</p>
+            <a className="button review-button" href={googleReviewUrl} target="_blank" rel="noreferrer">Read or leave a Google review</a>
           </div>
         </div>
 
@@ -235,20 +257,20 @@ export default function Home() {
 
         <div className="review-cta" data-reveal>
           <p>Already visited NASH?</p>
-          <a className="text-link dark-link" href={googleReviewUrl} target="_blank" rel="noreferrer">Share your experience on Google <span aria-hidden="true">↗</span></a>
+          <a className="text-link dark-link" href={googleReviewUrl} target="_blank" rel="noreferrer">Share your experience on Google</a>
         </div>
       </section>
 
       <section className="visit" id="visit">
         <div className="visit-mark" aria-hidden="true" data-reveal="scale">
-          <span className="shop-icon"><i /><b /><em /></span>
+          <RazorN className="findus-n" />
           <small>NASH BARBER</small>
         </div>
         <div className="visit-copy" data-reveal>
           <p className="eyebrow dark">Find us</p>
           <h2 data-reveal-title>Your local chair<br />in <em>Lymington.</em></h2>
           <p>NASH Barber is at {address}, serving Lymington and the wider New Forest community.</p>
-          <a className="text-link dark-link" href={googleMapsUrl} target="_blank" rel="noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <a className="text-link dark-link" href={googleMapsUrl} target="_blank" rel="noreferrer">Open in Google Maps</a>
         </div>
         <div className="details-card" data-reveal data-delay="2">
           <div><small>Address</small><strong>3 Queen Street</strong><span>Lymington SO41 9NH</span></div>
@@ -256,7 +278,7 @@ export default function Home() {
             <small>Opening hours</small>
             <dl>{openingHours.map(([day, hours]) => <div key={day}><dt>{day}</dt><dd>{hours}</dd></div>)}</dl>
           </div>
-          <div><small>Google profile</small><strong>4.7 ★ from 32 reviews</strong><a href={googleProfileUrl} target="_blank" rel="noreferrer">View business profile ↗</a></div>
+          <div><small>WhatsApp</small><strong>07766 578745</strong><a href="https://wa.me/447766578745" target="_blank" rel="noreferrer">Open WhatsApp</a></div>
         </div>
       </section>
 
@@ -270,7 +292,7 @@ export default function Home() {
         <div className="map-card">
           <span className="barber-pole" aria-hidden="true" />
           <div><small>NASH BARBER</small><strong>3 Queen Street<br />Lymington SO41 9NH</strong></div>
-          <a href={googleMapsUrl} target="_blank" rel="noreferrer">Directions <span aria-hidden="true">↗</span></a>
+          <a href={googleMapsUrl} target="_blank" rel="noreferrer">Directions</a>
         </div>
       </section>
 
@@ -278,17 +300,10 @@ export default function Home() {
         <div className="enquiry-copy" data-reveal>
           <p className="eyebrow">Contact NASH</p>
           <h2 data-reveal-title>Ask about<br /><em>your next cut.</em></h2>
-          <p>Send your preferred service and timing. NASH can respond once the shop&apos;s contact email or phone number is connected.</p>
-          <div className="contact-lines"><span>Visit</span><strong>3 Queen Street, Lymington SO41 9NH</strong><span>Google</span><a href={googleProfileUrl} target="_blank" rel="noreferrer">NASH Barber business profile ↗</a></div>
+          <p>Send your preferred service and timing directly to NASH using WhatsApp.</p>
+          <div className="contact-lines"><span>Visit</span><strong>3 Queen Street, Lymington SO41 9NH</strong><span>WhatsApp</span><a href="https://wa.me/447766578745" target="_blank" rel="noreferrer">07766 578745</a><span>Google</span><a href={googleProfileUrl} target="_blank" rel="noreferrer">NASH Barber business profile</a></div>
         </div>
-        <form className="enquiry-form" data-reveal data-delay="2">
-          <label>Name<input type="text" name="name" autoComplete="name" required /></label>
-          <label>Email or phone<input type="text" name="contact" autoComplete="email" required /></label>
-          <label>Service<select name="service" defaultValue=""><option value="" disabled>Select a service</option><option>The Nash Cut</option><option>Skin Fade</option><option>Cut & Beard</option><option>Beard & Hot Towel</option></select></label>
-          <label>Message<textarea name="message" rows={5} required /></label>
-          <button className="button button-muted" type="button" aria-disabled="true">Contact destination required</button>
-          <small>Add the shop&apos;s genuine email address or phone number to activate delivery. Google currently lists neither.</small>
-        </form>
+        <EnquiryForm />
       </section>
 
       <section className="booking" id="book">
@@ -296,18 +311,18 @@ export default function Home() {
         <ParticleField className="booking-particles" />
         <p className="eyebrow" data-reveal>Your next cut</p>
         <h2 data-reveal-title>Ready to look<br /><em>properly sharp?</em></h2>
-        <p data-reveal data-delay="1">Walk in at 3 Queen Street or send an enquiry once the shop&apos;s contact destination is confirmed.</p>
+        <p data-reveal data-delay="1">Walk in at 3 Queen Street or send your enquiry directly to NASH on WhatsApp.</p>
         <a className="button" href="#enquiry" data-reveal data-delay="2">Make an enquiry</a>
       </section>
 
       <footer className="site-footer" data-reveal>
         <a className="wordmark footer-mark" href="#top" aria-label="Back to top">
-          <span className="wordmark-main">NASH</span>
-          <span className="wordmark-sub">BARBER · LYMINGTON</span>
+          <RazorN className="brand-n" />
+          <span className="wordmark-copy"><span className="wordmark-main">NASH</span><span className="wordmark-sub">BARBER · LYMINGTON</span></span>
         </a>
         <p>Kurdish precision. Lymington character.</p>
         <div className="footer-links"><a href="#services">Services</a><a href="#heritage">Heritage</a><a href="#reviews">Reviews</a><a href="#enquiry">Contact</a><a href={googleReviewUrl} target="_blank" rel="noreferrer">Google review</a></div>
-        <small>© {new Date().getFullYear()} NASH Barber · 3 Queen Street, Lymington SO41 9NH</small>
+        <small>© {new Date().getFullYear()} NASH Barber · 3 Queen Street, Lymington SO41 9NH · Website made by <a href="https://beeseen.uk" target="_blank" rel="noreferrer">BEESEEN.uk</a></small>
       </footer>
     </main>
   );
